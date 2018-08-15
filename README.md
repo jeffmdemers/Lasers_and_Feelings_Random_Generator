@@ -2,6 +2,7 @@
 A Lasers and Feelings random generator (heroes, ship, and threats) built in python for the console.
 
 Lasers and Feelings: http://www.onesevendesign.com/laserfeelings/
+
 Image: https://ibb.co/cQszGU
 
 To use: Download the zip file and run the exe!
