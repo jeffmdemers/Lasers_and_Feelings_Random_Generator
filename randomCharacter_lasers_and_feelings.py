@@ -53,7 +53,7 @@ def GetHeroes(numHeroes):
         style = random.choice(styles)
         number = random.choice(numbers)
         lof = "Lasers" if number > 3 else "Feelings"
-        lofRating = "High " if number == 2 or number == 4 else ""
+        lofRating = "High " if number == 2 or number == 5 else ""
         goal = random.choice(goals)
         arHeroes.append(f'{name} ({number}, {lofRating}{lof}) {style} {role}, Goal: {goal}')
     return arHeroes
