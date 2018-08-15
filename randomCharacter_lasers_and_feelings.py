@@ -87,10 +87,23 @@ def GetNamePart(length):
     return word.capitalize()
 def GetName():
     return GetNamePart(random.randint(3,6)) + ' ' + GetNamePart(random.randint(4,10))
+def FullProgram():
+    heroes = GetHeroes(NumberOfHeroesInput())
+    ship = GetShip()
+    threat = GetThreat()
+    PrintOut(heroes, ship, threat)
 
 #MAIN
 OpeningSpiel()
-heroes = GetHeroes(NumberOfHeroesInput())
-ship = GetShip()
-threat = GetThreat()
-PrintOut(heroes, ship, threat)
+
+goAgain = True
+while goAgain:
+    FullProgram()
+    print("");
+    goAgain = input("Run again? (y/n)")
+    print("");
+    print("");
+    goAgain = True if goAgain is "y" else False
+
+exit = input("Press any key to quit")
+quit()
