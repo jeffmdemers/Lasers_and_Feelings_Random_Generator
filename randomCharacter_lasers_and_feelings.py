@@ -99,10 +99,10 @@ OpeningSpiel()
 goAgain = True
 while goAgain:
     FullProgram()
-    print("");
+    print("")
     goAgain = input("Run again? (y/n)")
-    print("");
-    print("");
+    print("")
+    print("")
     goAgain = True if goAgain is "y" else False
 
 exit = input("Press any key to quit")
