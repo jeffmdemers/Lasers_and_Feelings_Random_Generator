@@ -1,5 +1,7 @@
 # Lasers_and_Feelings_Random_Generator
-A Lasers and Feelings random generator (heroes, ship, and threats) built in python
+A Lasers and Feelings random generator (heroes, ship, and threats) built in python for the console.
+
+Image: https://ibb.co/cGTH39
 
 To use: Download the zip file and run the exe!
 
