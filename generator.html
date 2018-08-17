@@ -1,0 +1,68 @@
+<html>
+<head>
+  <title>Lasers and Feelings Generator</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script>
+    $(function() {
+      $.ajax("http://127.0.0.1:5000/Text")
+        .done(function(text) {
+          $("#openingSpiel").html(text.opening);
+          $("#numberOfHeroes").html(text.numberOfHeroes);
+        });
+
+      $("body").on("submit", "form", function(e) {
+        e.preventDefault();
+        $("#output").hide();
+        $.ajax("http://127.0.0.1:5000/Generate", {
+          'method': "POST",
+          contentType: "application/json",
+          'data': JSON.stringify({
+            'numberOfHeroes': $("#inputNumberOfHeroes").val()
+          })
+        }).done(function(result) {
+          $("#heroes").html(result.heroes);
+          $("#ship").html(result.ship);
+          $("#threat").html(result.threat);
+          $("#output").fadeIn();
+        });
+      });
+    });
+  </script>
+
+  <style>
+    .dataBlock {
+      margin-top: 25px;
+    }
+
+    h4 {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <form>
+    <div id="openingSpiel"></div>
+    <div class="dataBlock">
+      <span id="numberOfHeroes"></span>
+      <input id="inputNumberOfHeroes" type="number" min="0" max="7" />
+      <button type="submit">Go!</button>
+    </div>
+    <div id="output" style="display:none">
+      <div class="dataBlock">
+        <h4>Heroes</h4>
+        <div id="heroes"></div>
+      </div>
+      <div class="dataBlock">
+        <h4>The Raptor</h4>
+        <div id="ship"></div>
+      </div>
+      <div class="dataBlock">
+        <h4>The Mission</h4>
+        <div id="threat"></div>
+      </div>
+    </div>
+  </form>
+</body>
+</html>
