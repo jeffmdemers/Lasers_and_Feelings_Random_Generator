@@ -1,0 +1,31 @@
+<style>
+  .dataBlock {
+    margin-top: 25px;
+  }
+
+  h4 {
+    margin-bottom: 5px;
+  }
+</style>
+<div class="main" *ngIf="text">
+  <div id="openingSpiel" [innerHTML]="text.opening"></div>
+  <div class="dataBlock">
+    <span id="numberOfHeroes" [innerHTML]="text.numberOfHeroes"></span>
+    <input id="inputNumberOfHeroes" type="number" min="0" max="7" #inputNumberOfHeroes/>
+    <button type="button" (click)="generate(inputNumberOfHeroes.value)">Go!</button>
+  </div>
+  <div id="output" *ngIf="generated">
+    <div class="dataBlock">
+      <h4>Heroes</h4>
+      <div id="heroes" [innerHTML]="generated.heroes"></div>
+    </div>
+    <div class="dataBlock">
+      <h4>The Raptor</h4>
+      <div id="ship" [innerHTML]="generated.ship"></div>
+    </div>
+    <div class="dataBlock">
+      <h4>The Mission</h4>
+      <div id="threat" [innerHTML]="generated.threat"></div>
+    </div>
+  </div>
+</div>
