@@ -1,5 +1,5 @@
 # Lasers_and_Feelings_Random_Generator
-A Lasers and Feelings random generator (heroes, ship, and threats) built in python for the console.
+A Lasers and Feelings random generator (heroes, ship, and threats) built in python for the console. Alsocomes with a static html page that can run the generator as well as an angular example.
 
 Lasers and Feelings: http://www.onesevendesign.com/laserfeelings/
 
