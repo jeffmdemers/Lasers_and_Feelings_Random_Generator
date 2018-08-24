@@ -7,18 +7,24 @@
 import random
 import string
 import sys
+from locale import Locale
 
 class Logic:
     #METHODS
+    @staticmethod
     def OpeningSpiel():
-        return ['You are the crew of the interstellar scout ship Raptor.','Your mission is to explore uncharted regions of space, deal with aliens both friendly and deadly, and defend the Consortium worlds against space dangers.','Captain Darcy has been overcome by the strange psychic entity known as Something Else, leaving you to fend for yourselves while he recovers in a medical pod.']
+        return Locale.text()["openingSpiel"]
+    
+    @staticmethod
     def NumberOfHeroesText():
-        return "How many heroes would you like to generate (max: 7, one per role):"
+        return Locale.text()["numberOfHeroes"]
+    
+    @staticmethod
     def GetHeroes(numHeroes):
-        styles = ["Alien", "Android","Dangerous","Hot-Shot","Intrepid","Savvy","Sexy"]
-        roles = ["Doctor","Envoy","Engineer","Explorer","Pilot","Scientist","Soldier"]
+        styles = Locale.text()["hero"]["styles"]
+        roles =  Locale.text()["hero"]["roles"]
         numbers = [2,3,4,5]
-        goals = ["Become Captain", "Meet Sexy Aliens", "Shoot Bad Guys", "Find New Worlds", "Solve Weird Space Mysteries", "Prove Yourself", "Keep Being Awesome"]
+        goals =  Locale.text()["hero"]["goals"]
         arHeroes = []
         for x in range(numHeroes):
             #only allows this role once
@@ -27,14 +33,16 @@ class Logic:
             name = Logic.GetName()
             style = random.choice(styles)
             number = random.choice(numbers)
-            lof = "Lasers" if number > 3 else "Feelings"
-            lofRating = "High " if number == 2 or number == 5 else ""
+            lof =  Locale.text()[("lasers" if number > 3 else "feelings")]
+            lofRating = f'{Locale.text()["high"]} ' if number == 2 or number == 5 else ""
             goal = random.choice(goals)
-            arHeroes.append(f'{name} ({number}, {lofRating}{lof}) {style} {role}, Goal: {goal}')
+            arHeroes.append(f'{name} ({number}, {lofRating}{lof}) {style} {role}, {Locale.text()["goal"]}: {goal}')
         return arHeroes
+    
+    @staticmethod
     def GetShip():
-        strengths = ["Fast","Nimble","Well-Armed","Powerful Shields","Superior Senses","Cloaking Device","Fightercraft"]
-        weaknesses= ["Fuel Hog (always needs energy crystals)","Only One Medical Pod (and Captain Darcy is in it)","Horrible Circuit Breakers (in battle, consoles tend to explode on the bridge)","Grim Reputation (Captian Darcy did some bad stuff in the past)"]
+        strengths = Locale.text()["ship"]["strengths"]
+        weaknesses = Locale.text()["ship"]["weaknesses"]
         ar = []
         i = 0
         while i < 2:
@@ -44,12 +52,16 @@ class Logic:
             i+=1
         ar.append(random.choice(weaknesses))
         return ar
+    
+    @staticmethod
     def GetThreat():
-        threat = random.choice(["Zorgon the Conqueror","The Hive Armada","Rogue Captain","Space Pirates","Cyber Zombies","Alien Brain Worms"])
-        wantsTo = random.choice(["destroy/corrupt","steal/capture","bond with","protect/empower","build/synthensize","pacify/occupy"])
-        the = random.choice(["space pirate king/queen", "void crystals", "star dreadnought", "quantum tunnel", "ancient space ruin", "alien artifact"])
-        whichWill = random.choice(["destroy a solar system", "reverse time", "enslave a planet", "start a war/invasion","rip a hole in reality", "fix everything"])
-        return f'{threat} wants to {wantsTo} the {the} which will {whichWill}'
+        adversary = random.choice(Locale.text()["threat"]["adversary"])
+        wantsTo = random.choice(Locale.text()["threat"]["wantsTo"])
+        the = random.choice(Locale.text()["threat"]["the"])
+        whichWill = random.choice(Locale.text()["threat"]["whichWill"])
+        return f'{adversary} wants to {wantsTo} the {the} which will {whichWill}'
+    
+    @staticmethod
     def GetNamePart(length):
         VOWELS = "aeiou"
         CONSONANTS = "".join(set(string.ascii_lowercase) - set(VOWELS))
@@ -60,5 +72,7 @@ class Logic:
             else:
                 word += random.choice(VOWELS)
         return word.capitalize()
+    
+    @staticmethod
     def GetName():
         return Logic.GetNamePart(random.randint(3,6)) + ' ' + Logic.GetNamePart(random.randint(4,10))

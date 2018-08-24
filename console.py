@@ -42,6 +42,5 @@ while goAgain:
     print("")
     print("")
     goAgain = True if goAgain is "y" else False
-
-exit = input("Press any key to quit")
+    
 quit()
