@@ -8,15 +8,16 @@ class Locale:
 
     @staticmethod
     def text():
-        #first see if it's in static variable
-        if Locale.fullText is None:
-            Locale.fullText = Cache.get("text")
-            #if not in cache either, continue
+        print("get from cache")
+        Locale.fullText = Cache.get("text")
+        #if not in cache either, continue
+        if  Locale.fullText is None:
+            print("db get...")
+            Locale.fullText = DB.get("text","all")
+            #if not in db either, do initial load
             if  Locale.fullText is None:
-                Locale.fullText = DB.get("text","all")
-                #if not in db either, do initial load
-                if  Locale.fullText is None:
-                    Locale.fullText = Locale.__loadText()
+                print("db initial load")
+                Locale.fullText = Locale.__loadText()
         return Locale.fullText
 
     @staticmethod
@@ -44,6 +45,8 @@ class Locale:
             'high': "high",
             'goal':"goal"
         }
+        print("saving to db")
         DB.set("text","all",jsonText)
+        print("save to cache")
         Cache.set("text", jsonText)
         return jsonText

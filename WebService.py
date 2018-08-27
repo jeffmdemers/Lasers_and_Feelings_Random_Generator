@@ -18,7 +18,6 @@ def Text():
 @app.route('/Generate', methods=['POST'])
 def Generate():
     content = request.get_json()
-    print(f'content is: {content}')
     heroes = Logic.GetHeroes(int(content['numberOfHeroes']))
     ship = Logic.GetShip()
     threat = Logic.GetThreat()

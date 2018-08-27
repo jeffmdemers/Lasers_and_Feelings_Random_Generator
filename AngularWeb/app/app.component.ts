@@ -1,5 +1,4 @@
-import {Component, NgModule } from '@angular/core';
-import {GeneratorComponent} from './components/generator/generator-component'
+import {Component } from '@angular/core';
 
 @Component({
     selector: 'app-main',
